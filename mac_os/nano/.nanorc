@@ -1,0 +1,12 @@
+set tabsize 4
+set tabstospaces
+set autoindent
+set trimblanks
+set linenumbers
+set constantshow
+set titlecolor white,magenta
+set keycolor cyan
+set functioncolor cyan
+set numbercolor orange
+set mouse
+include /opt/homebrew/share/nano/*.nanorc
