@@ -272,7 +272,9 @@ defaults write com.apple.commerce AutoUpdate -bool true
 
 #### 2. [Install Inconsolata Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Inconsolata.zip)/[MesloLGS NF Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip)
 
-#### 3. Restore profile from `iterm2/Guillermo.json`
+#### 3. Restore preferences from `mac_os/iterm2/com.googlecode.iterm2.plist`
+
+#### 4. Restore profile from `mac_os/iterm2/Guillermo.json`
 
 ### Homebrew
 
