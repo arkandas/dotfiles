@@ -268,11 +268,11 @@ defaults write com.apple.commerce AutoUpdate -bool true
 
 ![iterm2](./mac_os/iterm2/iterm2.png)
 
-1. [Install hyper-snazzy theme](https://github.com/sindresorhus/hyper-snazzy)
+#### 1. [Install hyper-snazzy theme](https://github.com/sindresorhus/hyper-snazzy)
 
-2. [Install Inconsolata Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Inconsolata.zip)/[MesloLGS NF Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip)
+#### 2. [Install Inconsolata Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Inconsolata.zip)/[MesloLGS NF Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip)
 
-3. Restore profile from `iterm2/Guillermo.json`
+#### 3. Restore profile from `iterm2/Guillermo.json`
 
 ### Homebrew
 
@@ -301,9 +301,6 @@ Add `GOPATH/bin` directory to your PATH environment variable so you can run Go p
 ```bash
 export PATH=$PATH:$(go env GOPATH)/bin
 ```
-
-
-
 
 ### Python
 
@@ -334,7 +331,7 @@ touch .hushlogin
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-#### 3. Configure the zsh shell for M1 macs
+#### 2. Configure the zsh shell for M1 macs
 
 ```bash
 which zsh 
@@ -343,9 +340,9 @@ which zsh
 chsh -s $(which zsh)
 ```
 
-#### 4. Plugins
+#### 3. Plugins
 
-##### 4.1. Autosuggessions
+##### 3.1. Autosuggessions
 
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -358,7 +355,7 @@ plugins=(
     )
 ```
 
-##### 4.2. Syntax Highlighting
+##### 3.2. Syntax Highlighting
 
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -371,7 +368,7 @@ plugins=(
     )
 ```
 
-##### 4.3. Completions
+##### 3.3. Completions
 
 ```bash
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
@@ -384,7 +381,7 @@ plugins=(
     )
 ```
 
-#### 5. Install Powerlevel10k
+#### 4. Install Powerlevel10k
 
 Clone the repository:
 
@@ -392,7 +389,7 @@ Clone the repository:
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
-#### 6. Configure `.zshrc` and `.p10.zsh`
+#### 5. Configure `.zshrc` and `.p10.zsh`
 
 ### Git
 
@@ -419,7 +416,7 @@ Configure git for múltiple ssh keys
 touch ~/.ssh/config
 ```
 
-Add hosts to the `~/.ssh/config` file 
+Add hosts to the `~/.ssh/config` file
 
 ```bash
 # Main account
