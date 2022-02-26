@@ -288,6 +288,8 @@ Install [Homebrew](https://brew.sh/)
 
 ```bash
 brew install git make rectangle vlc tree htop wget youtube-dl nmap fnm diff-so-fancy go maven gradle openjdk bazel qemu tldr jq imagemagick zsh ruby ffmpeg gcc
+brew install --cask google-chrome
+brew install --cask firefox
 brew install --cask iterm2
 brew install --cask spotify
 brew install --cask transmission
@@ -296,6 +298,7 @@ brew install --cask mpv
 brew install --cask postman
 brew install --cask dbeaver-community
 brew install --cask stats
+brew install --cask whatsapp
 ```
 
 Add `GOPATH/bin` directory to your PATH environment variable so you can run Go programs anywhere.
