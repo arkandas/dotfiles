@@ -272,9 +272,11 @@ defaults write com.apple.commerce AutoUpdate -bool true
 
 #### 2. [Install Inconsolata Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Inconsolata.zip)/[MesloLGS NF Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip)
 
-#### 3. Restore preferences from `mac_os/iterm2/com.googlecode.iterm2.plist`
+#### 3. [Install FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
 
-#### 4. Restore profile from `mac_os/iterm2/Guillermo.json`
+#### 4. Restore preferences from `mac_os/iterm2/com.googlecode.iterm2.plist`
+
+#### 5. Restore profile from `mac_os/iterm2/Guillermo.json`
 
 ### Homebrew
 
@@ -307,14 +309,6 @@ Add `GOPATH/bin` directory to your PATH environment variable so you can run Go p
 export PATH=$PATH:$(go env GOPATH)/bin
 ```
 
-### Python
-
-```bash
-brew install python
-pip3 install --upgrade pip 
-pip install speedtest-cli
-```
-
 ### Pyenv
 
 ```bash
@@ -323,6 +317,7 @@ brew install pyenv
 pyenv install --list | grep " 3\.[89]" #Install latest
 pyenv install -v 3.9.X
 pyenv global 3.9.X
+pip3 install --upgrade pip
 ```
 
 ### Oh My ZSH + Plugins
