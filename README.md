@@ -422,12 +422,15 @@ Add hosts to the `~/.ssh/config` file
 # Main account
 Host github.com
    HostName github.com
+   AddKeysToAgent yes
+   UseKeychain yes
    IdentityFile ~/.ssh/id_rsa
-   IdentitiesOnly yes
 
 # Other github account: userName
 Host github-userName
    HostName github.com
+   AddKeysToAgent yes
+   UseKeychain yes
    IdentityFile ~/.ssh/id_rsa_userName
    IdentitiesOnly yes
 ```
