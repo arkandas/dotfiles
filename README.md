@@ -289,7 +289,7 @@ Install [Homebrew](https://brew.sh/)
 ### Homebrew Applications
 
 ```bash
-brew install git make rectangle vlc tree htop wget youtube-dl nmap fnm diff-so-fancy go maven gradle openjdk bazel qemu tldr jq imagemagick zsh ruby ffmpeg gcc
+brew install git make rectangle vlc tree htop wget youtube-dl nmap fnm diff-so-fancy go maven gradle openjdk bazel telnet qemu tldr jq imagemagick zsh ruby ffmpeg gcc
 brew install --cask google-chrome
 brew install --cask firefox
 brew install --cask iterm2
