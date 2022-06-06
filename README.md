@@ -16,7 +16,7 @@ General configurations from system settings and some quality of life tweaks.
 
 ```bash
 # Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
+# settings we're about to change
 osascript -e 'tell application "System Preferences" to quit'
 # Ask for the administrator password upfront
 sudo -v
@@ -44,7 +44,7 @@ defaults write com.apple.dock "tilesize" -int 25
 defaults write com.apple.dock "show-recents" -bool false
 # Always display the dock
 defaults write com.apple.dock "autohide" -bool false
-# Don’t animate opening applications from the Dock
+# Don't animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
 # Disable Bouncing dock icons
 defaults write com.apple.dock no-bouncing -bool true
@@ -110,7 +110,7 @@ launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.
 defaults write NSGlobalDomain AppleFontSmoothing -int 1
 # Disable automatic window animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
-# Disable the “Are you sure you want to open this application?” dialog
+# Disable the "Are you sure you want to open this application?" dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -129,7 +129,7 @@ defaults write -g NSQuitAlwaysKeepsWindows -bool false
 # ==================
 #   Safari
 # ==================
-# Privacy: don’t send search queries to Apple
+# Privacy: don't send search queries to Apple
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 # ==================
@@ -145,7 +145,7 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 # ==================
 # Disable the annoying line marks
 defaults write com.apple.Terminal ShowLineMarks -int 0
-# Don’t display the annoying prompt when quitting iTerm
+# Don't display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 # ==================
 #   Photos
@@ -160,10 +160,10 @@ defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
 defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
 # Use `~/Downloads` to store completed downloads
 defaults write org.m0k.transmission DownloadLocationConstant -bool true
-# Don’t prompt for confirmation before downloading
+# Don't prompt for confirmation before downloading
 defaults write org.m0k.transmission DownloadAsk -bool false
 defaults write org.m0k.transmission MagnetOpenAsk -bool false
-# Don’t prompt for confirmation before removing non-downloading active transfers
+# Don't prompt for confirmation before removing non-downloading active transfers
 defaults write org.m0k.transmission CheckRemoveDownloading -bool true
 # Trash original torrent files
 defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
@@ -185,7 +185,7 @@ defaults write com.apple.screencapture type -string "png"
 #   Language
 # ==================
 # Set language and text formats
-# Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
+# Note: if you're in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
 defaults write NSGlobalDomain AppleLanguages -array "en" "es"
 defaults write NSGlobalDomain AppleLocale -string "en_US@currency=EUR"
@@ -194,11 +194,11 @@ defaults write NSGlobalDomain AppleMetricUnits -bool true
 # ==================
 #   Keyboard
 # ==================
-# Disable automatic capitalization as it’s annoying when typing code
+# Disable automatic capitalization as it's annoying when typing code
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-# Disable smart dashes as they’re annoying when typing code
+# Disable smart dashes as they're annoying when typing code
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-# Disable automatic period substitution as it’s annoying when typing code
+# Disable automatic period substitution as it's annoying when typing code
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
@@ -251,7 +251,7 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryCli
 # Enable Trackpad pinch to zoom
 defaults write "com.apple.driver.AppleBluetoothMultitouch.trackpad" "TrackpadPinch" -bool "true"
 defaults write "com.apple.AppleMultitouchTrackpad" "TrackpadPinch" -bool "true"
-# Disable “natural” (Lion-style) scrolling
+# Disable "natural" (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 # ==================
 #   App Store
@@ -289,7 +289,7 @@ Install [Homebrew](https://brew.sh/)
 ### Homebrew Applications
 
 ```bash
-brew install git make rectangle vlc tree htop wget youtube-dl nmap fnm diff-so-fancy go maven gradle openjdk bazel telnet qemu tldr jq imagemagick zsh ruby ffmpeg gcc
+brew install git make rectangle vlc tree htop wget youtube-dl nmap fnm diff-so-fancy go maven gradle openjdk bazel telnet qemu tldr jq imagemagick zsh ruby ffmpeg gcc imagemagick
 brew install --cask google-chrome
 brew install --cask firefox
 brew install --cask iterm2
@@ -473,6 +473,7 @@ cp mac_os/nano/.nanorc ~/.nanorc
 - Firefox
 - Github Desktop
 - Google Chrome
+- Hand Mirror
 - iTerm2
 - Jetbrains Toolbox
 - Kap
@@ -482,6 +483,7 @@ cp mac_os/nano/.nanorc ~/.nanorc
 - Office
 - mpv
 - Nextcloud
+- MeetingBar
 - OBS
 - Omnigraffle
 - pgAdmin
