@@ -146,8 +146,9 @@ unset __conda_setup
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-
 alias python="$(pyenv which python)"
 alias pip="$(pyenv which pip)"
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
