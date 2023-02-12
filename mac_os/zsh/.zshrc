@@ -10,7 +10,7 @@ fi
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/guillermo/.oh-my-zsh"
+export ZSH="/Users/$USER/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -108,7 +108,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Alias
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Aliases
 alias zshconfig="code ~/.zshrc"
 alias zshsource="source ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
@@ -122,33 +125,14 @@ alias nrb="npm run build"
 alias nrc="npm run commit"
 alias gpup="git push -u"
 alias nano='/opt/homebrew/bin/nano'
+alias youtube-dl='yt-dlp'
 
 # Init fnm to get node and npm
 eval "$(fnm env)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
+# Pyenv configuration
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 alias python="$(pyenv which python)"
 alias pip="$(pyenv which pip)"
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
