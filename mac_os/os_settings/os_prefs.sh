@@ -32,7 +32,7 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Show Library folder
-chflags nohidden ~/Library
+sudo chflags nohidden ~/Library
 # Show the /Volumes folder
 sudo chflags nohidden /Volumes
 # Show hidden files
@@ -116,6 +116,10 @@ defaults write com.apple.mail DisableReplyAnimations -bool true
 defaults write com.apple.mail DisableSendAnimations -bool true
 # Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+# Display emails in threaded mode, sorted by date (oldest at the top)
+defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreadedMode" -string "yes"
+defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortedDescending" -string "yes"
+defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortOrder" -string "received-date"
 # ==================
 #   iTerm2
 # ==================
@@ -157,6 +161,10 @@ defaults write -g PMPrintingExpandedStateForPrint -bool TRUE
 # ==================
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
+# Create Screenshots folder for the current user
+mkdir /Users/$USER/Screenshots
+# Save screenshots to the /Users/$USER/Screenshots folder
+defaults write com.apple.screencapture location /Users/$USER/Screenshots && killall SystemUIServer
 # ==================
 #   Language
 # ==================
@@ -238,8 +246,9 @@ defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
 # Turn on app auto-update
 defaults write com.apple.commerce AutoUpdate -bool true
-# ==================
-#   Screenshots
-# ==================
-mkdir /Users/$USER/Screenshots
-defaults write com.apple.screencapture location /Users/$USER/Screenshots && killall SystemUIServer
+# Check for software updates daily, not just once per week
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+# Download newly available updates in background
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+# Install System data files & security updates
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1

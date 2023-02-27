@@ -1,9 +1,7 @@
 #!/bin/zsh
 
-#!/bin/zsh
-
-echo -e "${msc}Setting computer name as: ${NEWHOST} ${endcolor}"
 # Set computer name (as done via System Preferences → Sharing)
+echo -e "${msc}Setting computer name as: ${NEWHOST} ${endcolor}"
 sudo scutil --set ComputerName ${NEWHOST}
 sudo scutil --set HostName ${NEWHOST}
 sudo scutil --set LocalHostName ${NEWHOST}

@@ -1,511 +1,376 @@
-# Dotfiles
+![dotfiles_banner](./assets/dotfiles_banner2.png)
 
-Files and configuration guides for terminal and system settings, mostly focused on macOS.
+Files and configuration scripts for terminal and system preferences, mostly focused on macOS.
 
-## macOS Setup Guide 2023
+## macOS configuration
 
-### System Preferences
+![iterm2](./assets/iterm2.png)
 
-#### Update macOS
-
-- System Preferences -> Software Update
-
-## Quick install script
+### Quick Installation Script
 
 ```bash
-zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/install2.sh)"
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/install.sh)"
 ```
 
-### Defaults
+![install_script](./assets/install_script.png)
 
-General configurations from system settings and some quality of life tweaks.
+:warning: **NOTE:** This installer executes scripts from the `utils` folder, you should check them first to verify what you're installing.
+
+The following options are currently available:
+
+1. **Configure new Mac:**
+   - Installs XCode Command Line Tools and clones this repository
+   - Installs [Homebrew](https://brew.sh/), formulae, casks and apps from [Brewfile](./mac_os/brew/Brewfile)
+   - Sets System Preferences from [os_prefs.sh](./mac_os/os_settings/os_prefs.sh)
+   - Installs [Oh-my-zsh](https://ohmyz.sh/) and plugins:
+     - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+     - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+     - [zsh-completions](https://github.com/zsh-users/zsh-completions)
+   - Installs [Powerlevel10k Zsh theme](https://github.com/romkatv/powerlevel10k)
+   - Copies [Iterm2](./mac_os/iterm2/com.googlecode.iterm2.plist), [.zshrc](./mac_os/zsh/.zshrc), [Powerlevel10k](mac_os/zsh/.p10k.zsh), [nano](./mac_os/nano/.nanorc) and [.gitignore](./mac_os/git/.gitignore) settings
+   - Configures and installs OpenJDK, pyenv, fnm and Angular
+2. **Set computer name:**
+    - Prompts the user for a new computer name (as done via System Preferences → Sharing)
+3. **Set git credentials:**
+    - Prompts the user for their git username and email
+    - Adds `~/.ssh/id_rsa` to the users's keychain
+    - Configures git to globally ignore certain files defined in `~/.gitignore`
+    - Configures git to use diff-so-fancy for all diff output
+    - **Optional:** Set multiple git accounts in the `~/.ssh/config` file:
+
+      ```bash
+      # Main account
+      Host github.com
+      HostName github.com
+      AddKeysToAgent yes
+      UseKeychain yes
+      IdentityFile ~/.ssh/id_rsa
+
+      # Other github account: userName
+      Host github-userName
+      HostName github.com
+      AddKeysToAgent yes
+      UseKeychain yes
+      IdentityFile ~/.ssh/id_rsa_userName
+      IdentitiesOnly yes
+      ```
+
+## Linux Configuration
+
+### Debian Openbox
+
+![1-Image](./assets/neofetch2.png)
+
+![2-Image](./assets/mx150_screen.png)
+
+### Nvidia Drivers
+
+- Nvidia Optimus drivers: <https://wiki.debian.org/NvidiaGraphicsDrivers/Optimus>
+- Install xorg and xorg-server
+- Add [Jessie Backports](https://backports.debian.org/Instructions/)
+- [Remove nouveau](http://http://www.allaboutlinux.eu/remove-nouveau-and-install-nvidia-driver-in-debian-8/)
+- Blacklist nouveau on modprobe.d with intel microcode
+- Install nvidia-drivers backports and linux headers 
+
+### Debian non-free microcode
+
+- **Intel video drivers**
+
+``` bash
+sudo apt-get install xserver-xorg-video-intel
+```
+
+- **Intel microcode**
+
+``` bash
+sudo apt-get install intel-microcode
+```
+
+- **Wifi** (wireless tools should be installed by default)
+
+``` bash
+sudo apt-get install wireless-tools
+```
+
+### Obmenu
+
+[Obmenu-generator github](https://github.com/trizen/obmenu-generator)
+
+The program requires a lot of perl dependencies that can be compiled directly from their respective github repos.
+
+Make sure dependencies are met, specially the ones related to gtk2; in case there are errors, launch the program with: `obmenu-generator -i` and check the output for pipe errors.
+
+**IMPORTANT:** You will need a `config.pl` and a `schema.pl` file inside the `~/.config/obmenu-generator/` folder, changes to the obmenu configuration need to be made to the `schema.pl` file.
+
+To generate a new dinamic menu with icons:
+
+``` bash
+obmenu-generator -p -i
+```
+
+To generate a static menu with icons:
+
+``` bash
+obmenu-generator -s -i
+```
+
+### Openbox
+
+Install the following Openbox add-ons:
+
+1. **Tint2**
+
+``` bash
+sudo apt-get install tint2
+```
+
+2. **Conky** (Requires the conky-all package)
 
 ```bash
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we're about to change
-osascript -e 'tell application "System Preferences" to quit'
-# Ask for the administrator password upfront
-sudo -v
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-# ==================
-#   Computer Name
-# ==================
-# Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "kharak"
-sudo scutil --set HostName "kharak"
-sudo scutil --set LocalHostName "kharak"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "kharak"
-# ==================
-#   General
-# ==================
-# Set sidebar icons size to small
-defaults write NSGlobalDomain "NSTableViewDefaultSizeMode" -int 1
-# ==================
-#   Dock
-# ==================
-# Dock icon size of 25 pixels
-defaults write com.apple.dock "tilesize" -int 25
-# Don't show recently used apps in the Dock
-defaults write com.apple.dock "show-recents" -bool false
-# Always display the dock
-defaults write com.apple.dock "autohide" -bool false
-# Don't animate opening applications from the Dock
-defaults write com.apple.dock launchanim -bool false
-# Disable Bouncing dock icons
-defaults write com.apple.dock no-bouncing -bool true
-# ==================
-#   Finder
-# ==================
-# Keep folders on top when sorting by name
-defaults write com.apple.finder _FXSortFoldersFirst -bool true
-# When performing a search, search the current folder by default
-defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
-# Show Library folder
-chflags nohidden ~/Library
-# Show the /Volumes folder
-sudo chflags nohidden /Volumes
-# Show hidden files
-defaults write com.apple.finder AppleShowAllFiles YES
-# Show path bar
-defaults write com.apple.finder ShowPathbar -bool true
-# Show status bar
-defaults write com.apple.finder ShowStatusBar -bool true
-# Show all filename extensions
-defaults write -g AppleShowAllExtensions -bool true
-# Display full POSIX path as Finder window title
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
-# Disable the warning when changing a file extension
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-# Disable the warning before emptying the Trash
-defaults write com.apple.finder WarnOnEmptyTrash -bool false
-# Finder: disable window animations and Get Info animations
-defaults write com.apple.finder DisableAllAnimations -bool true
-# Add option to quit Finder
-defaults write com.apple.finder QuitMenuItem -bool TRUE
-# Finder: disable window animations and Get Info animations
-defaults write com.apple.finder DisableAllAnimations -bool true
-# Avoid creating .DS_Store files on network or USB volumes
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
-# Show icons for hard drives, servers, and removable media on the desktop
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
-# defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
-# ==================
-#   Chrome
-# ==================
-# Prevent left and right swipe through history in Chrome
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
-# Disable the all too sensitive backswipe on trackpads
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
-defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
-# Disable the all too sensitive backswipe on Magic Mouse
-defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
-defaults write com.google.Chrome.canary AppleEnableMouseSwipeNavigateWithScrolls -bool false
-# ==================
-#   System
-# ==================
-# Disable Resume system-wide
-defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
-# Disable Notification Center and remove the menu bar icon
-launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
-# Enable subpixel font rendering on non-Apple LCDs
-# Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
-defaults write NSGlobalDomain AppleFontSmoothing -int 1
-# Disable automatic window animations
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
-# Disable the "Are you sure you want to open this application?" dialog
-defaults write com.apple.LaunchServices LSQuarantine -bool false
-# Expand save panel by default
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-# Expand print panel by default
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-# Reveal IP address, hostname, OS version, etc. when clicking the clock
-# in the login window
-sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-# Disable Notification Center and remove the menu bar icon
-launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
-#Disable Resume applications on reboot (system-wide)
-defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
-defaults write -g NSQuitAlwaysKeepsWindows -bool false
-# ==================
-#   Safari
-# ==================
-# Privacy: don't send search queries to Apple
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-# ==================
-#   Mail
-# ==================
-# Disable send and reply animations in Mail.app
-defaults write com.apple.mail DisableReplyAnimations -bool true
-defaults write com.apple.mail DisableSendAnimations -bool true
-# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-# ==================
-#   iTerm2
-# ==================
-# Disable the annoying line marks
-defaults write com.apple.Terminal ShowLineMarks -int 0
-# Don't display the annoying prompt when quitting iTerm
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
-# ==================
-#   Photos
-# ==================
-# Prevent Photos from opening automatically when devices are plugged in
-defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
-# ==================
-#   Transmission
-# ==================
-# Use `~/Documents/Torrents` to store incomplete downloads
-defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
-# Use `~/Downloads` to store completed downloads
-defaults write org.m0k.transmission DownloadLocationConstant -bool true
-# Don't prompt for confirmation before downloading
-defaults write org.m0k.transmission DownloadAsk -bool false
-defaults write org.m0k.transmission MagnetOpenAsk -bool false
-# Don't prompt for confirmation before removing non-downloading active transfers
-defaults write org.m0k.transmission CheckRemoveDownloading -bool true
-# Trash original torrent files
-defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
-# Hide the donate message
-defaults write org.m0k.transmission WarningDonate -bool false
-# Hide the legal disclaimer
-defaults write org.m0k.transmission WarningLegal -bool false
-# ==================
-#   Printer
-# ==================
-# Show Expanded Print Dialog by Default
-defaults write -g PMPrintingExpandedStateForPrint -bool TRUE
-# ==================
-#   Screenshots
-# ==================
-# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
-defaults write com.apple.screencapture type -string "png"
-# ==================
-#   Language
-# ==================
-# Set language and text formats
-# Note: if you're in the US, replace `EUR` with `USD`, `Centimeters` with
-# `Inches`, `en_GB` with `en_US`, and `true` with `false`.
-defaults write NSGlobalDomain AppleLanguages -array "en" "es"
-defaults write NSGlobalDomain AppleLocale -string "en_US@currency=EUR"
-defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
-defaults write NSGlobalDomain AppleMetricUnits -bool true
-# ==================
-#   Keyboard
-# ==================
-# Disable automatic capitalization as it's annoying when typing code
-defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-# Disable smart dashes as they're annoying when typing code
-defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-# Disable automatic period substitution as it's annoying when typing code
-defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
-# Disable auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-# ==================
-#   Bluetooth
-# ==================
-# Increase sound quality for Bluetooth headphones/headsets
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
-# ==================
-#   Menu Bar
-# ==================
-# The time separator flashes every second
-defaults write com.apple.menuextra.clock "FlashDateSeparators" -bool "true" && killall SystemUIServer
-# Set date format in menu bar
-defaults write com.apple.menuextra.clock "DateFormat" -string "\"EEE d MMM HH:mm:ss\""
-# Show battery icon in Menu Bar
-defaults -currentHost write "com.apple.controlcenter" "Battery" -int 22
-# Show Battery percentage in Menu Bar
-defaults -currentHost write "com.apple.controlcenter" "BatteryShowPercentage" -bool "true"
-# Show Bluetooth icon in Menu Bar
-defaults -currentHost write "com.apple.controlcenter" "Bluetooth" -int 18
-# Show Sound icon in Menu Bar
-defaults -currentHost write "com.apple.controlcenter" "Sound" -int 18
-# Show Screen Mirroring icon in Menu Bar
-defaults -currentHost write "com.apple.controlcenter" "ScreenMirroring" -int 18
-# Show WiFi icon in Menu Bar
-defaults -currentHost write "com.apple.controlcenter" "WiFi" -int 2
-# Display is always available in Control Center
-defaults -currentHost write "com.apple.controlcenter" "Display" -int 18
-# Don't show Keyboard Brightness icon in Menu Bar
-defaults -currentHost write "com.apple.controlcenter" "KeyboardBrightness" -int 8
-# Don't show AirDrop icon in Menu Bar
-defaults -currentHost write "com.apple.controlcenter" "AirDrop" -int 8
-# Don't show Siri icon in Menu Bar
-defaults write "com.apple.Siri" "StatusMenuVisible" -bool "false"
-# Don't show Spotlight icon in Menu Bar
-defaults -currentHost write "com.apple.Spotlight" "MenuItemHidden" -bool "true"
-# ==================
-#   Trackpad/Mouse
-# ==================
-# Trackpad: enable tap to click for this user and for the login screen
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-# Trackpad: map bottom right corner to right-click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
-# Enable Trackpad pinch to zoom
-defaults write "com.apple.driver.AppleBluetoothMultitouch.trackpad" "TrackpadPinch" -bool "true"
-defaults write "com.apple.AppleMultitouchTrackpad" "TrackpadPinch" -bool "true"
-# Disable "natural" (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-# ==================
-#   App Store
-# ==================
-# Enable the WebKit Developer Tools in the Mac App Store
-defaults write com.apple.appstore WebKitDeveloperExtras -bool true
-# Enable the automatic update check
-defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
-# Turn on app auto-update
-defaults write com.apple.commerce AutoUpdate -bool true
+sudo apt-get install conky-all
 ```
 
-### iTerm2
+3. **Thunar daemon** for debian
 
-![iterm2](./mac_os/iterm2/iterm2.png)
+4. **Volti** or **VolumeIcon** for the volume applet (The real volume controller to select output will be the gtk front of pulseaudio)
+   
+``` bash
+sudo apt-get install volti
+```
 
-#### 1. [Install hyper-snazzy theme](https://github.com/sindresorhus/hyper-snazzy)
+or
 
-#### 2. [Install Inconsolata Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Inconsolata.zip)/[MesloLGS NF Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip)
+``` bash
+sudo apt-get install volumeicon
+```
 
-#### 3. [Install FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
+5. **Network configuration**
+      5.1. **With network manager:** Install the network manager package and compile or install the gnome applet (nm-applet). Requires setting the network manager on systemctl (systemctl enable NetworkManager.service)
+      Edit `NetworkManager`
 
-#### 4. Restore preferences from `mac_os/iterm2/com.googlecode.iterm2.plist`
+      5.2. **With the Wicd Applet:** Debian has control of the network interfaces out of the box (It might require to install the intel wifi microcode upgrade for the wifi subsystem)
 
-#### 5. Restore profile from `mac_os/iterm2/Guillermo.json`
+      ``` bash
+      sudo apt-get install wicd wicd-gtk
+      ```
 
-### Homebrew
+6. **blueberry-tray** with all the bluetooth config
 
-Install [Homebrew](https://brew.sh/)
+7. **Openbox configuration utilities:**
+    1. obconf
+    2. lxapperance
+    3. arandr
+    4. lxrandr
+    5. lxinput
+
+### Rofi
+
+1. Clone the Rofi repo [Rofi](https://github.com/DaveDavenport/rofi)
+
+``` bash
+git clone https://github.com/DaveDavenport/rofi.git
+```
+
+2. Follow the [installation guide](https://github.com/DaveDavenport/rofi/blob/next/INSTALL.md)
+
+3. Install [Rofi themes](https://github.com/DaveDavenport/rofi-themes)
+
+4. Add Rofi to the hotkeys section in the openbox `rc.xml` file
+
+5. Set Rofi on obmenu-generator
+
+6. Change rofi themes with `rofi-theme-selector`
+
+### Keyboard Hotkeys
+
+Hotkeys that trigger actions such as the execution of a program can be added or modified on the rc.xml file at `~/.config/openbox/rc.xml`
+
+To add a new keybind, modify your rc.xml, and inside the \<keyboard> tag add something like:
+
+``` xml
+<!-- Custom bind -->
+ <keybind key="Key combo Ex: C-A-t">
+      <action name="Execute">
+        <command>terminator</command>
+      </action>
+    </keybind>
+```
+
+The key mapping is:
+
+| Value  |     Key     |
+|--------|-------------|
+|   S    | Shift Key   |
+|   C    | Control Key |
+|   A    | Alt Key     |
+|   W    | Super Key   |
+|   M    | Meta Key    |
+|   H    | Hyper Key   |
+
+Some samples:
+
+``` xml
+   <!-- Personal Keybinds-->
+    <keybind key="C-A-t">
+      <action name="Execute">
+        <command>terminator</command>
+      </action>
+    </keybind>
+    <keybind key="C-A-g">
+      <action name="Execute">
+        <command>google-chrome</command>
+      </action>
+    </keybind>
+    <keybind key="C-A-f">
+      <action name="Execute">
+        <command>xdg-open http://</command>
+      </action>
+    </keybind>
+    <keybind key="C-A-m">
+      <action name="Execute">
+        <command>thunar</command>
+      </action>
+    </keybind>
+    <keybind key="C-A-c">
+      <action name="Execute">
+        <command>code</command>
+      </action>
+    </keybind>
+    <keybind key="C-A-r">
+      <action name="Execute">
+        <command>rofi -show drun -font "inconsolata 10"</command>
+      </action>
+    </keybind>
+    <keybind key="C-A-s">
+      <action name="Execute">
+        <command>shutter</command>
+      </action>
+    </keybind>
+    <keybind key="XF86MonBrightnessUp">
+      <action name="Execute">
+        <command>xbacklight +10</command>
+      </action>
+    </keybind>
+    <keybind key="XF86MonBrightnessDown">
+      <action name="Execute">
+        <command>xbacklight -10</command>
+      </action>
+    </keybind>
+    <!-- End Personal Keybinds-->
+```
+
+Add volumen keys to your config
+
+``` xml
+<keybind key="XF86AudioRaiseVolume">
+  <action name="Execute">
+    <command>amixer set Master 5%+ unmute</command>
+  </action>
+</keybind>
+<keybind key="XF86AudioLowerVolume">
+  <action name="Execute">
+    <command>amixer set Master 5%- unmute</command>
+  </action>
+</keybind>
+<keybind key="XF86AudioMute">
+  <action name="Execute">
+    <command>amixer set Master toggle</command>
+  </action>
+</keybind>
+```
+
+### Nerd Fonts
+
+1. Clone the Nerd Fonts project from [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
+2. Install the fonts using the provided script
+3. Reload font cache with:
+
+   ``` bash
+   sudo dpkg-reconfigure fontconfig 
+   ```
+
+4. Reboot or reload with dpkg
+5. Select the new system font with `lxappearance`
+
+### Xinitrc Configuration File with nvidia drivers loaded
+
+``` bash
+
+#!/bin/sh
+
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+# Xrandr set defaul resulution (1920x1080 - 96 dpi)
+# xrandr --dpi 96
+
+# /etc/X11/xinit/xinitrc
+#
+# global xinitrc file, used by all X sessions started by xinit (startx)
+
+# invoke global X session script
+./etc/X11/Xsession
+
+exec openbox-session
+```
+
+### Keyboard
+
+1. Change Keyboard layout from "us" to "intl"
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+/etc/default/keyboard
 ```
 
-### Homebrew Applications
+2. Check all available keyboard distributions on:
+
+``` bash
+/usr/share/X11/xkb/rules/xorg.lst 
+```
+
+3. Reconfigure the keyboard:
 
 ```bash
-brew install git make rectangle vlc tree htop wget youtube-dl nmap fnm diff-so-fancy go maven gradle openjdk bazel telnet qemu tldr jq imagemagick zsh ruby ffmpeg gcc imagemagick
-brew install --cask google-chrome
-brew install --cask firefox
-brew install --cask iterm2
-brew install --cask spotify
-brew install --cask transmission
-brew install --cask visual-studio-code
-brew install --cask mpv 
-brew install --cask postman
-brew install --cask dbeaver-community
-brew install --cask stats
-brew install --cask whatsapp
+sudo dpkg-reconfigure keyboard-configuration
 ```
 
-Add `GOPATH/bin` directory to your PATH environment variable so you can run Go programs anywhere.
+4. Update initram:
 
 ```bash
-export PATH=$PATH:$(go env GOPATH)/bin
+sudo update-initramfs -u 
 ```
 
-### Pyenv
+### Notifications
+
+By default, openbox does not support notifications out of the box, so we'll install a notification daemon. The most complete and less intensive resource-wise is `xfce4-notifyd`:
+
+``` bash
+sudo apt-get install xfce4-notifyd
+```
+
+### Conky
+
+1. Install conky with:
 
 ```bash
-brew update
-brew install pyenv
-pyenv install --list | grep " 3\.[89]" #Install latest
-pyenv install -v 3.9.X
-pyenv global 3.9.X
-pip3 install --upgrade pip
+sudo apt-get install conky-all
 ```
 
-### Oh My ZSH + Plugins
+2. Clone conky proyect "conky Harmattan" from [Conky Harmattan](https://github.com/zagortenay333/Harmattan)
 
-#### 1. Install ZSH
+3. Install inkscape (Necessary for the svg icons)
 
-```bash
-# Remove last login message from terminal
-touch .hushlogin
-# Install Oh My Zsh from Github https://github.com/ohmyzsh/ohmyzsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
+4. copy the .harmattan-assets folder to the root of your home directory `~`.
 
-#### 2. Configure the zsh shell for M1 macs
+5. Install dependencies `conky`, `curl` and `jq` and Droid Sans font
 
-```bash
-which zsh 
-/opt/homebrew/bin/zsh
-# Edit /etc/shells and append the zsh homebrew shell
-chsh -s $(which zsh)
-```
+6. Copy your `.conkyrc` file to the root of your home directory `~`
 
-#### 3. Plugins
+7. Add `conky &` to your openbox autostart file
 
-##### 3.1. Autosuggessions
+### Screenshots
 
-```bash
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-```
+![Menu1](./assets/obmenu/obmenu.png)
 
-```bash
-plugins=(
-    # Other plugins... 
-    zsh-autosuggestions
-    )
-```
+![Menu2](./assets/obmenu/obmenu2.png)
 
-##### 3.2. Syntax Highlighting
-
-```bash
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
-
-```bash
-plugins=( 
-    # Other plugins...
-    zsh-syntax-highlighting
-    )
-```
-
-##### 3.3. Completions
-
-```bash
-git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
-```
-
-```bash
-plugins=( 
-    # Other plugins...
-        zsh-completions
-    )
-```
-
-#### 4. Install Powerlevel10k
-
-Clone the repository:
-
-```bash
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
-
-#### 5. Configure `.zshrc` and `.p10.zsh`
-
-### Git
-
-Install and configure Git
-
-```bash
-brew install git
-git config --global user.name "Your Name Here"
-git config --global user.email "your_email@youremail.com"
-ssh-add --apple-use-keychain ~/.ssh/id_rsa
-git config --global core.excludesfile ~/.gitignore
-git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
-```
-
-Create and configure global `.gitignore`
-
-```bash
-touch ~/.gitignore
-```
-
-Configure git for múltiple ssh keys
-
-```bash
-touch ~/.ssh/config
-```
-
-Add hosts to the `~/.ssh/config` file
-
-```bash
-# Main account
-Host github.com
-   HostName github.com
-   AddKeysToAgent yes
-   UseKeychain yes
-   IdentityFile ~/.ssh/id_rsa
-
-# Other github account: userName
-Host github-userName
-   HostName github.com
-   AddKeysToAgent yes
-   UseKeychain yes
-   IdentityFile ~/.ssh/id_rsa_userName
-   IdentitiesOnly yes
-```
-
-### Screenshots Folder
-
-```bash
-mkdir /Users/$USER/Screenshots
-defaults write com.apple.screencapture location /Users/userName/Screenshots && killall SystemUIServer
-```
-
-### Node Manager
-
-```bash
-eval "$(fnm env)"
-fnm list-remote
-fnm install vx.x.x
-fnm ls
-fnm use vx.x.x
-fnm current
-```
-
-### Nano
-
-Add colors to nano
-
-```bash
-cp mac_os/nano/.nanorc ~/.nanorc
-```
-
-### macOS Apps
-
-- Anaconda
-- Amphetamine
-- Cyberduck
-- DBeaver
-- Discord
-- Docker Desktop
-- Etcher
-- Firefox
-- Github Desktop
-- Google Chrome
-- Hand Mirror
-- iTerm2
-- Jetbrains Toolbox
-- Kap
-- Katalon Studio
-- KiCad
-- Teams
-- Office
-- mpv
-- Nextcloud
-- MeetingBar
-- OBS
-- Omnigraffle
-- pgAdmin
-- Pixelmator Pro
-- R Studio
-- Rectangle
-- Postman
-- Spotify
-- The Unarchiver
-- TeX
-- Timer
-- Transmission
-- Tunnelblick
-- VIA
-- Visual Studio Code
-- VLC
-- WhatsApp
-- Xcode
-- Zoom
+![Menu3](./assets/obmenu/obmenu3.png)
