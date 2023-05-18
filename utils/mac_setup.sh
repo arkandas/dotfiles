@@ -16,7 +16,7 @@ until $(xcode-select --print-path &> /dev/null); do
   sleep 5;
 done
 
-# Close any open System Preferences panes, 
+# Close any open System Preferences panes,
 # to prevent them from overriding settings we're about to change
 osascript -e 'tell application "System Preferences" to quit'
 
@@ -28,11 +28,11 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Clone dotfiles project
-echo -e "${msc}Clone dotfiles project${endcolor}" 
+echo -e "${msc}Clone dotfiles project${endcolor}"
 git clone https://github.com/arkandas/dotfiles.git
 
 # Install Homebrew (https://brew.sh)
-echo  -e "${msc}Install Homebrew${endcolor}" 
+echo  -e "${msc}Install Homebrew${endcolor}"
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Make shell find brew
@@ -40,11 +40,11 @@ NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Ho
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install formulae, casks and apps from Brewfile
-echo  -e "${msc}Restore Brewfile${endcolor}" 
+echo  -e "${msc}Restore Brewfile${endcolor}"
 brew bundle --file dotfiles/mac_os/brew/Brewfile
 
 # Accept Xcode license
-echo  -e "${msc}Accept Xcode license${endcolor}" 
+echo  -e "${msc}Accept Xcode license${endcolor}"
 sudo xcodebuild -license accept
 
 # Set System Preferences from os_prefs.sh

@@ -24,7 +24,7 @@ echo -e "4)  Exit"
 echo -e "${bold}----------------------------${endcolor}"
 echo -e ""
 read "?Please select an option: " selection
-   
+
 case $selection in
         1)
             echo -e "${hp}Executing remote script${endcolor}"
