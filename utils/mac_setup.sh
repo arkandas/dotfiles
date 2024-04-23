@@ -47,10 +47,6 @@ brew bundle --file dotfiles/mac_os/brew/Brewfile
 echo  -e "${msc}Accept Xcode license${endcolor}"
 sudo xcodebuild -license accept
 
-# Set System Preferences from os_prefs.sh
-echo -e "${msc}Restore System Preferences${endcolor}"
-zsh dotfiles/mac_os/os_settings/os_prefs.sh
-
 # Oh-my-zsh and plugins
 echo -e "${msc}Install oh-my-zsh${endcolor}"
 touch ~/.hushlogin

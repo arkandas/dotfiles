@@ -1,12 +1,4 @@
 # ==================
-#   Computer Name
-# ==================
-# Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "mac"
-sudo scutil --set HostName "mac"
-sudo scutil --set LocalHostName "mac"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "mac"
-# ==================
 #   General
 # ==================
 # Set sidebar icons size to small

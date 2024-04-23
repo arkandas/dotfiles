@@ -18,28 +18,35 @@ clear -x
 echo -e "${bold}Dotfile Installer${endcolor}"
 echo -e "${bold}----------------------------${endcolor}"
 echo -e "1)  Configure new Mac"
-echo -e "2)  Set computer name"
-echo -e "3)  Set git credentials"
-echo -e "4)  Exit"
+echo -e "2)  Restore system preferences"
+echo -e "3)  Set computer name"
+echo -e "4)  Set git credentials"
+echo -e "5)  Exit"
 echo -e "${bold}----------------------------${endcolor}"
 echo -e ""
 read "?Please select an option: " selection
 
 case $selection in
         1)
-            echo -e "${hp}Executing remote script${endcolor}"
+            echo -e "${hp}Executing remote script - Configure new Mac${endcolor}"
             PYTHON_VERSION=${pyenv_ver} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/utils/mac_setup.sh)"
             sleep 2
             menu
             ;;
         2)
+            echo -e "${hp}Executing remote script - Restore system preferences${endcolor}"
+            PYTHON_VERSION=${pyenv_ver} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/utils/system_prefs.sh)"
+            sleep 2
+            menu
+            ;;
+        3)
             echo -e "${hp}"
             read "?Chose a new hostname: " hostname
             NEWHOST=${hostname} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/utils/set_hostname.sh)"
             sleep 2
             menu
             ;;
-        3)
+        4)
             echo -e "${hp}"
             read "?Git username: " gituser
             read "?Git email address: " gitemail
@@ -47,7 +54,7 @@ case $selection in
             sleep 2
             menu
             ;;
-        4)
+        5)
             echo -e "Exiting..."
             exit
             ;;
