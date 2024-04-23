@@ -21,7 +21,6 @@ The following options are currently available:
 1. **Configure new Mac:**
    - Installs XCode Command Line Tools and clones this repository
    - Installs [Homebrew](https://brew.sh/), formulae, casks and apps from [Brewfile](./mac_os/brew/Brewfile)
-   - Sets System Preferences from [os_prefs.sh](./mac_os/os_settings/os_prefs.sh)
    - Installs [Oh-my-zsh](https://ohmyz.sh/) and plugins:
      - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
      - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
@@ -29,9 +28,11 @@ The following options are currently available:
    - Installs [Powerlevel10k Zsh theme](https://github.com/romkatv/powerlevel10k)
    - Copies [Iterm2](./mac_os/iterm2/com.googlecode.iterm2.plist), [.zshrc](./mac_os/zsh/.zshrc), [Powerlevel10k](mac_os/zsh/.p10k.zsh), [nano](./mac_os/nano/.nanorc) and [.gitignore](./mac_os/git/.gitignore) settings
    - Configures and installs OpenJDK, pyenv, fnm and Angular
-2. **Set computer name:**
+2. **Restore system preferences**
+   - Sets System Preferences from [os_prefs.sh](./mac_os/os_settings/os_prefs.sh)
+3. **Set computer name:**
     - Prompts the user for a new computer name (as done via System Preferences → Sharing)
-3. **Set git credentials:**
+4. **Set git credentials:**
     - Prompts the user for their git username and email
     - Adds `~/.ssh/id_rsa` to the users's keychain
     - Configures git to globally ignore certain files defined in `~/.gitignore`
