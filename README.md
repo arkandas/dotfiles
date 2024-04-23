@@ -28,7 +28,7 @@ The following options are currently available:
    - Installs [Powerlevel10k Zsh theme](https://github.com/romkatv/powerlevel10k)
    - Copies [Iterm2](./mac_os/iterm2/com.googlecode.iterm2.plist), [.zshrc](./mac_os/zsh/.zshrc), [Powerlevel10k](mac_os/zsh/.p10k.zsh), [nano](./mac_os/nano/.nanorc) and [.gitignore](./mac_os/git/.gitignore) settings
    - Configures and installs OpenJDK, pyenv, fnm and Angular
-2. **Restore system preferences**
+2. **Restore system preferences:**
    - Sets System Preferences from [os_prefs.sh](./mac_os/os_settings/os_prefs.sh)
 3. **Set computer name:**
     - Prompts the user for a new computer name (as done via System Preferences → Sharing)
