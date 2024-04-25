@@ -35,7 +35,7 @@ case $selection in
             ;;
         2)
             echo -e "${hp}Executing remote script - Restore system preferences${endcolor}"
-            PYTHON_VERSION=${pyenv_ver} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/utils/system_prefs.sh)"
+            PYTHON_VERSION=${pyenv_ver} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/mac_os/os_settings/os_prefs.sh)"
             sleep 2
             menu
             ;;
