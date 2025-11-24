@@ -136,3 +136,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 alias python="$(pyenv which python)"
 alias pip="$(pyenv which pip)"
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+# Pico SDK
+export PICO_SDK_PATH="/Users/$USER/pico/pico-sdk"
+
+export STM32_PRG_PATH=/Applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/STM32CubeProgrammer.app/Contents/MacOs/binexport JAVA_HOME="$(/usr/libexec/java_home -v 11)"
