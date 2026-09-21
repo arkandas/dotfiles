@@ -1,0 +1,8 @@
+theme = Snazzy Soft
+font-family = Hack Nerd Font Mono
+font-size = 14
+copy-on-select = clipboard
+clipboard-paste-protection = false
+confirm-close-surface = false
+quit-after-last-window-closed = true
+shell-integration-features = ssh-env,ssh-terminfo

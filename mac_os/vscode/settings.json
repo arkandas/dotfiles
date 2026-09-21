@@ -1,0 +1,204 @@
+{
+  "terminal.integrated.fontFamily": "'Hack Nerd Font', monospace",
+  "terminal.integrated.fontSize": 14,
+  "editor.fontFamily": "'Hack Nerd Font'",
+  "security.workspace.trust.untrustedFiles": "open",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.fontSize": 13,
+    "editor.fontFamily": "'Hack Nerd Font'",
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.fontSize": 13,
+    "editor.fontFamily": "Hack Nerd Font",
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.fontSize": 13,
+    "editor.fontFamily": "Hack Nerd Font",
+  },
+  "workbench.colorTheme": "oh-lucy",
+  "workbench.iconTheme": "vscode-icons",
+  "highlight.regexes": {
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *TODO(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#ffcc00",
+          "backgroundColor": "#ffcc00",
+          "color": "#1f1f1f",
+          "fontWeight": "bold",
+        },
+        {
+          "backgroundColor": "#ffcc00",
+          "color": "#1f1f1f",
+        },
+      ],
+    },
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:FIXME|FIX|BUG|UGLY|DEBUG|HACK)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#cc0000",
+          "backgroundColor": "#cc0000",
+          "color": "#1f1f1f",
+          "fontWeight": "bold",
+        },
+        {
+          "backgroundColor": "#cc0000",
+          "color": "#1f1f1f",
+        },
+      ],
+    },
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:REVIEW|OPTIMIZE|TSC)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#00ccff",
+          "backgroundColor": "#00ccff",
+          "color": "#1f1f1f",
+          "fontWeight": "bold",
+        },
+        {
+          "backgroundColor": "#00ccff",
+          "color": "#1f1f1f",
+        },
+      ],
+    },
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:IDEA)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#cc00cc",
+          "backgroundColor": "#cc00cc",
+          "color": "#1f1f1f",
+          "fontWeight": "bold",
+        },
+        {
+          "backgroundColor": "#cc00cc",
+          "color": "#1f1f1f",
+        },
+      ],
+    },
+  },
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.startupEditor": "none",
+  "notebook.formatOnSave.enabled": true,
+  "editor.formatOnPaste": true,
+  "editor.fontSize": 13,
+  "editor.minimap.enabled": false,
+  "editor.wordWrap": "on",
+  "workbench.colorCustomizations": {
+    "editor.selectionBackground": "#bc1ea2b0",
+    "editor.selectionHighlightBackground": "#5b9fff78",
+    "editor.findMatchBackground": "#0d60fa",
+    "editor.findMatchHighlightBackground": "#5b9fff78",
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "update.showReleaseNotes": false,
+  "terminal.integrated.env.osx": {
+    "PICO_SDK_PATH": "${env:HOME}/.pico-sdk/sdk/2.0.0",
+    "PICO_TOOLCHAIN_PATH": "${env:HOME}/.pico-sdk/toolchain/13_2_Rel1",
+    "PATH": "${env:HOME}/.pico-sdk/toolchain/13_2_Rel1/bin:${env:HOME}/.pico-sdk/picotool/2.0.0/picotool:${env:HOME}/.pico-sdk/cmake/v3.28.6/bin:${env:HOME}/.pico-sdk/ninja/v1.12.1:${env:PATH}",
+  },
+  "peacock.favoriteColors": [
+    {
+      "name": "Angular Red",
+      "value": "#dd0531",
+    },
+    {
+      "name": "Azure Blue",
+      "value": "#007fff",
+    },
+    {
+      "name": "JavaScript Yellow",
+      "value": "#f9e64f",
+    },
+    {
+      "name": "Mandalorian Blue",
+      "value": "#1857a4",
+    },
+    {
+      "name": "Node Green",
+      "value": "#215732",
+    },
+    {
+      "name": "React Blue",
+      "value": "#61dafb",
+    },
+    {
+      "name": "Something Different",
+      "value": "#832561",
+    },
+    {
+      "name": "Svelte Orange",
+      "value": "#ff3d00",
+    },
+    {
+      "name": "Vue Green",
+      "value": "#42b883",
+    },
+  ],
+  "console-ninja.featureSet": "Community",
+  "git.autofetch": true,
+  "errorLens.enabled": false,
+  "codesnap.showWindowControls": false,
+  "codesnap.boxShadow": "rgba(0, 0, 0, 0,00) 0px 0px 0px",
+  "codesnap.containerPadding": "0em",
+  "codesnap.roundedCorners": false,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "cmake.showOptionsMovedNotification": false,
+  "git.openRepositoryInParentFolders": "never",
+  "[c]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools",
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false,
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8",
+  },
+  "files.associations": {
+    "*.py": "python",
+  },
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "claudeCode.preferredLocation": "panel",
+  "docker.extension.enableComposeLanguageServer": false,
+  "git.enableSmartCommit": true,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "python": false,
+  },
+  "github.copilot.nextEditSuggestions.enabled": false,
+  "chat.disableAIFeatures": true,
+
+  // Telemetry / crash reporting / data collection
+  "telemetry.telemetryLevel": "off",
+  "telemetry.feedback.enabled": false,
+  "workbench.enableExperiments": false,
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "update.mode": "manual",
+  "extensions.autoCheckUpdates": false,
+  "npm.fetchOnlinePackageInfo": false,
+
+  // AI / Copilot / Chat
+  "chat.commandCenter.enabled": false,
+  "chat.agent.enabled": false,
+  "chat.experimental.offerSetup": false,
+  "chat.detectParticipant.enabled": false,
+  "inlineChat.enabled": false,
+  "editor.inlineSuggest.enabled": false,
+  "workbench.commandPalette.experimental.askChatLocation": "disabled",
+  "github.copilot.chat.enabled": false,
+  "github.copilot.editor.enableAutoCompletions": false,
+}

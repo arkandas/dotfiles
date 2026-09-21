@@ -6,8 +6,8 @@ defaults write NSGlobalDomain "NSTableViewDefaultSizeMode" -int 1
 # ==================
 #   Dock
 # ==================
-# Dock icon size of 25 pixels
-defaults write com.apple.dock "tilesize" -int 25
+# Dock icon size of 49 pixels
+defaults write com.apple.dock "tilesize" -int 49
 # Don't show recently used apps in the Dock
 defaults write com.apple.dock "show-recents" -bool false
 # Always display the dock
@@ -52,7 +52,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
 # defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 # ==================
@@ -164,7 +164,7 @@ defaults write com.apple.screencapture location /Users/$USER/Screenshots && kill
 # Note: if you're in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
 defaults write NSGlobalDomain AppleLanguages -array "en" "es"
-defaults write NSGlobalDomain AppleLocale -string "en_US@currency=EUR"
+defaults write NSGlobalDomain AppleLocale -string "en_ES@currency=eur"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 # ==================
@@ -198,8 +198,8 @@ defaults -currentHost write "com.apple.controlcenter" "BatteryShowPercentage" -b
 defaults -currentHost write "com.apple.controlcenter" "Bluetooth" -int 18
 # Show Sound icon in Menu Bar
 defaults -currentHost write "com.apple.controlcenter" "Sound" -int 18
-# Show Screen Mirroring icon in Menu Bar
-defaults -currentHost write "com.apple.controlcenter" "ScreenMirroring" -int 18
+# Don't show Screen Mirroring icon in Menu Bar
+defaults -currentHost write "com.apple.controlcenter" "ScreenMirroring" -int 8
 # Show WiFi icon in Menu Bar
 defaults -currentHost write "com.apple.controlcenter" "WiFi" -int 2
 # Display is always available in Control Center

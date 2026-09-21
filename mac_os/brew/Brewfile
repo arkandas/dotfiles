@@ -1,144 +1,299 @@
-tap "armmbed/formulae"
-tap "homebrew/autoupdate"
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-tap "homebrew/services"
+tap "fredowski/pspp", trusted: true
+tap "hudochenkov/sshpass", trusted: true
+# Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
-brew "ansible"
-brew "webp"
-brew "jpeg-xl"
-brew "aom"
-brew "automake"
-brew "bat"
-brew "bazel"
-brew "gcc"
-brew "binwalk"
-brew "bison"
-brew "cmake"
-brew "diff-so-fancy"
-brew "unbound"
-brew "tesseract"
-brew "ffmpeg"
-brew "fnm"
-brew "gh"
-brew "ghostscript"
-brew "git"
-brew "go"
-brew "openjdk"
-brew "gradle"
-brew "htop"
-brew "libtool"
-brew "imagemagick"
-brew "jq"
-brew "kubectx"
-brew "lazygit"
-brew "libusb"
-brew "libnfc"
-brew "llvm@17"
-brew "lua"
-brew "luarocks"
-brew "make"
-brew "mas"
-brew "maven"
-brew "mfoc"
-brew "minicom"
-brew "yt-dlp"
-brew "mpv"
-brew "nano"
-brew "neovim"
-brew "nmap"
-brew "open-ocd"
-brew "pandoc"
-brew "pkg-config"
-brew "pyenv"
-brew "pyenv-virtualenv"
-brew "python-tk@3.11"
-brew "python@3.10"
-brew "qemu"
-brew "redis"
-brew "rsync"
-brew "ruby"
-brew "rust"
-brew "scrcpy"
-brew "speedtest-cli"
-brew "telnet"
-brew "texinfo"
-brew "tldr"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Automate deployment, configuration, and upgrading
+brew "ansible"
+# Codec library for encoding and decoding AV1 video streams
+brew "aom"
+# Tool for generating GNU Standards-compliant Makefiles
+brew "automake"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Image format providing lossless and lossy compression for web images
+brew "webp"
+# Google's own build tool
+brew "bazel"
+# Searches a binary image for embedded files and executable code
+brew "binwalk"
+# Parser generator
+brew "bison"
+# Get/set bluetooth power and discoverable state
+brew "blueutil"
+# Cross-platform make
+brew "cmake"
+# Container runtimes on MacOS (and Linux) with minimal setup
+brew "colima"
+# Good-lookin' diffs with diff-highlight and more
+brew "diff-so-fancy"
+# .NET Core
+brew "dotnet"
+# Perl lib for reading and writing EXIF metadata
+brew "exiftool"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
+# Fast and simple Node.js version manager
+brew "fnm"
+# GNU compiler collection
+brew "gcc"
+# GitHub command-line tool
+brew "gh"
+# Multi-platform software reverse engineering framework
+brew "ghidra"
+# OCR (Optical Character Recognition) engine
+brew "tesseract"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
+# Distributed revision control system
+brew "git"
+# Library for USB device access
+brew "libusb"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Development kit for the Java programming language
+brew "openjdk"
+# Open-source build automation tool based on the Groovy and Kotlin DSL
+brew "gradle"
+# Generic library support script
+brew "libtool"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# Improved top (interactive process viewer)
+brew "htop"
+# Tools and libraries to manipulate images in select formats
+brew "imagemagick"
+# New file format for still image compression
+brew "jpeg-xl"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
+# Interactive environments for writing and running code
+brew "jupyterlab"
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
+# Simple terminal UI for git commands
+brew "lazygit"
+# Low level NFC SDK and Programmers API
+brew "libnfc"
+# Next-gen compiler infrastructure
+brew "llvm@17"
+# Powerful, lightweight programming language
+brew "lua"
+# Package manager for the Lua programming language
+brew "luarocks"
+# Utility for directing compilation
+brew "make"
+# Mac App Store command-line interface
+brew "mas"
+# Java-based project management
+brew "maven"
+# Implementation of 'offline nested' attack by Nethemba
+brew "mfoc"
+# Menu-driven communications program
+brew "minicom"
+# Deep clean and optimize your Mac
+brew "mole"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
+# Media player based on MPlayer and mplayer2
+brew "mpv"
+# Free (GNU) replacement for the Pico text editor
+brew "nano"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Port scanning utility for large networks
+brew "nmap"
+# On-chip debugging, in-system programming and boundary-scan testing
+brew "open-ocd"
+# PNG file optimizer
+brew "optipng"
+# Minimal dumb-terminal emulation program
+brew "picocom"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
+# Optimizer for PNG files
+brew "pngcrush"
+# PNG image optimizing utility
+brew "pngquant"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# Object-relational database system
+brew "postgresql@14"
+# Object-relational database system
+brew "postgresql@16", restart_service: :changed
+# Python version management
+brew "pyenv"
+# Pyenv plugin to manage virtualenv
+brew "pyenv-virtualenv"
+# Python interface to Tcl/Tk
+brew "python-tk@3.11"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
+# Generic machine emulator and virtualizer
+brew "qemu"
+# Persistent key-value database, with built-in net interface
+brew "redis"
+# Utility that provides fast incremental file transfer
+brew "rsync"
+# Powerful, clean, object-oriented scripting language
+brew "ruby"
+# Safe, concurrent, practical language
+brew "rust"
+# Display and control your Android device
+brew "scrcpy"
+# Command-line interface for https://speedtest.net bandwidth tests
+brew "speedtest-cli"
+# User interface to the TELNET protocol
+brew "telnet"
+# Official documentation format of the GNU project
+brew "texinfo"
+# Simplified and community-driven man pages
+brew "tldr"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
+# Internet file retriever
 brew "wget"
+# JavaScript package manager
 brew "yarn"
+# UNIX shell (command interpreter)
 brew "zsh"
-brew "armmbed/formulae/arm-none-eabi-gcc"
-cask "alt-tab"
+# statistical analysis of sampled data
+brew "fredowski/pspp/pspp"
+brew "hudochenkov/sshpass/sshpass"
+# Android SDK component
 cask "android-platform-tools"
+# Application uninstaller
 cask "appcleaner"
+# Multi-track audio editor and recorder
+cask "audacity"
+# Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
+# E-books management software
 cask "calibre"
+# Clipboard extension app
 cask "clipy"
+cask "codexbar"
+# Server and cloud storage browser
 cask "cyberduck"
+# Universal database tool and SQL client
 cask "dbeaver-community"
+# Voice and text chat software
 cask "discord"
-cask "docker"
+# App to build and share containerised applications and microservices
+cask "docker-desktop"
+# Web browser
 cask "firefox"
 cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
 cask "font-inconsolata-lgc-nerd-font"
 cask "font-inconsolata-nerd-font"
 cask "font-meslo-lg-nerd-font"
+# Pre-built GNU bare-metal toolchain for 32-bit Arm processors
 cask "gcc-arm-embedded"
-cask "ghidra"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Desktop client for GitHub repositories
 cask "github"
+# Web browser
 cask "google-chrome"
-cask "handbrake"
+# Open-source video transcoder
+cask "handbrake-app"
+# Tool to optimise images to a smaller size
+cask "imageoptim"
+# Hex editor for reverse engineers
 cask "imhex"
+# Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# Jellyfin desktop client
 cask "jellyfin-media-player"
+# JetBrains tools manager
 cask "jetbrains-toolbox"
+# Open-source screen recorder built with web technology
 cask "kap"
+# Electronics design automation suite
 cask "kicad"
+# Free cross-platform office suite, fresh version
+cask "libreoffice"
+# Desktop sync client for Nextcloud software products
 cask "nextcloud"
+# Open-source software for live streaming and screen recording
 cask "obs"
+# Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Administration and development platform for PostgreSQL
 cask "pgadmin4"
+# Collaboration platform for API development
 cask "postman"
-cask "r"
+# Environment for statistical computing and graphics
+cask "r-app"
+# Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
+# Data science software focusing on R and Python
 cask "rstudio"
+# Open source virtual/remote desktop application
 cask "rustdesk"
+# Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
+# Graphical client for Git version control
 cask "sourcetree"
+# Music streaming service
 cask "spotify"
+# System monitor for the menu bar
 cask "stats"
+# Web browser focusing on security
 cask "tor-browser"
+# Open-source BitTorrent client
 cask "transmission"
+# Keyboard configurator
 cask "via"
+# Open-source code editor
 cask "visual-studio-code"
+# Multimedia player
 cask "vlc"
-cask "wireshark"
+# Menu bar toolkit with keep-awake, system monitor and volume mixer
+cask "vorssaint"
+cask "whatcable"
+# Network protocol analyzer
+cask "wireshark-app"
+# Collect, organise, cite, and share research sources
 cask "zotero"
-mas "Amphetamine", id: 937984704
 mas "Brother P-touch Editor", id: 1453365242
 mas "HextEdit", id: 1557247094
-mas "Keynote", id: 409183694
 mas "The Unarchiver", id: 425424353
 mas "Today", id: 6443714928
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
 vscode "adpyke.codesnap"
+vscode "angular.ng-template"
+vscode "anthropic.claude-code"
 vscode "bradlc.vscode-tailwindcss"
 vscode "davidanson.vscode-markdownlint"
 vscode "dbaeumer.vscode-eslint"
+vscode "docker.docker"
 vscode "eamodio.gitlens"
+vscode "echoapi.echoapi-for-vscode"
 vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
 vscode "formulahendry.auto-close-tag"
 vscode "formulahendry.auto-rename-tag"
-vscode "gruntfuggly.todo-tree"
 vscode "hashicorp.terraform"
 vscode "hermitter.oh-lucy-vscode"
-vscode "jasonnutter.vscode-codeowners"
+vscode "marus25.cortex-debug"
+vscode "mcu-debug.debug-tracker-vscode"
+vscode "mcu-debug.memory-view"
+vscode "mcu-debug.peripheral-viewer"
+vscode "mcu-debug.rtos-views"
+vscode "mechatroner.rainbow-csv"
 vscode "mgmcdermott.vscode-language-babel"
 vscode "mikestead.dotenv"
+vscode "ms-azuretools.vscode-containers"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
 vscode "ms-python.autopep8"
@@ -146,17 +301,24 @@ vscode "ms-python.debugpy"
 vscode "ms-python.isort"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
-vscode "ms-vscode-remote.remote-containers"
+vscode "ms-python.vscode-python-envs"
+vscode "ms-vscode.cmake-tools"
+vscode "ms-vscode.cpp-devtools"
+vscode "ms-vscode.cpptools"
+vscode "ms-vscode.cpptools-extension-pack"
+vscode "ms-vscode.cpptools-themes"
+vscode "ms-vscode.vscode-serial-monitor"
 vscode "ms-vsliveshare.vsliveshare"
 vscode "nhoizey.gremlins"
 vscode "oderwat.indent-rainbow"
+vscode "paulober.pico-w-go"
+vscode "pranaygp.vscode-css-peek"
+vscode "raspberry-pi.raspberry-pi-pico"
 vscode "redhat.vscode-yaml"
 vscode "ritwickdey.liveserver"
-vscode "shd101wyy.markdown-preview-enhanced"
 vscode "tamasfe.even-better-toml"
 vscode "timonwong.shellcheck"
 vscode "tomoki1207.pdf"
 vscode "usernamehw.errorlens"
 vscode "vscode-icons-team.vscode-icons"
-vscode "wallabyjs.console-ninja"
 vscode "wix.vscode-import-cost"

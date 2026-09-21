@@ -71,19 +71,21 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zs
 echo -e "${msc}Install powerlevel10k${endcolor}"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-# Iterm2 and Zsh configurations
-echo -e "${msc}Iterm2 and Zsh configurations${endcolor}"
+# Iterm2, Ghostty and Zsh configurations
+echo -e "${msc}Iterm2, Ghostty and Zsh configurations${endcolor}"
 
 # Iterm2 settings
 cp dotfiles/mac_os/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
+cp dotfiles/mac_os/ghostty/config ~/Library/Application\ Support/com.mitchellh.ghostty/config
 # powerlevel10k settings
 cp dotfiles/mac_os/zsh/.p10k.zsh ~/.p10k.zsh
 # .zshrc
 cp dotfiles/mac_os/zsh/.zshrc ~/.zshrc
 
 # Edit /etc/shells and append the zsh homebrew shell
-echo "/opt/homebrew/bin/zsh" | sudo tee -a /etc/shells
-sudo chsh -s $(which zsh)
+grep -qx "/opt/homebrew/bin/zsh" /etc/shells || echo "/opt/homebrew/bin/zsh" | sudo tee -a /etc/shells
+sudo chsh -s "$(which zsh)" "$USER"
 source ~/.zshrc
 
 # Global .gitignore
@@ -112,15 +114,13 @@ npm install -g @angular/cli
 # Update npm
 npm install -g npm
 
-# Add Angular completions to .zshrc
-echo >> ~/.zshrc
-echo "# Load Angular CLI autocompletion." >> ~/.zshrc
-echo "source <(ng completion script)" >> ~/.zshrc
-source ~/.zshrc
-
 # Add nano configuration
 echo -e "${msc}Copy nano configuration${endcolor}"
 cp dotfiles/mac_os/nano/.nanorc ~/.nanorc
+
+echo -e "${msc}Copy VS Code settings${endcolor}"
+mkdir -p ~/Library/Application\ Support/Code/User
+cp dotfiles/mac_os/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
 # Remove dotfiles project
 echo -e "${msc}Cleanup${endcolor}"

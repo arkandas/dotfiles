@@ -5,7 +5,7 @@
 # ===========================
 
 # Config vars
-pyenv_ver=3.11.1
+pyenv_ver=3.12.3
 rd="\033[1;31m"
 msc="\033[1;36m"
 hc="\033[1;31m"
@@ -29,20 +29,20 @@ read "?Please select an option: " selection
 case $selection in
         1)
             echo -e "${hp}Executing remote script - Configure new Mac${endcolor}"
-            PYTHON_VERSION=${pyenv_ver} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/utils/mac_setup.sh)"
+            PYTHON_VERSION=${pyenv_ver} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/main/utils/mac_setup.sh)"
             sleep 2
             menu
             ;;
         2)
             echo -e "${hp}Executing remote script - Restore system preferences${endcolor}"
-            PYTHON_VERSION=${pyenv_ver} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/mac_os/os_settings/os_prefs.sh)"
+            PYTHON_VERSION=${pyenv_ver} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/main/mac_os/os_settings/os_prefs.sh)"
             sleep 2
             menu
             ;;
         3)
             echo -e "${hp}"
             read "?Chose a new hostname: " hostname
-            NEWHOST=${hostname} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/utils/set_hostname.sh)"
+            NEWHOST=${hostname} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/main/utils/set_hostname.sh)"
             sleep 2
             menu
             ;;
@@ -50,7 +50,7 @@ case $selection in
             echo -e "${hp}"
             read "?Git username: " gituser
             read "?Git email address: " gitemail
-            GITUSER=${gituser} GITEMAIL=${gitemail} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/utils/git_config.sh)"
+            GITUSER=${gituser} GITEMAIL=${gitemail} msc=${msc} endcolor=${endcolor} zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/main/utils/git_config.sh)"
             sleep 2
             menu
             ;;

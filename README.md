@@ -9,7 +9,7 @@ Files and configuration scripts for terminal and system preferences, mostly focu
 ### Quick Installation Script
 
 ```bash
-zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/master/install.sh)"
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/arkandas/dotfiles/main/install.sh)"
 ```
 
 ![install_script](./assets/install_script.png)
@@ -20,13 +20,13 @@ The following options are currently available:
 
 1. **Configure new Mac:**
    - Installs XCode Command Line Tools and clones this repository
-   - Installs [Homebrew](https://brew.sh/), formulae, casks and apps from [Brewfile](./mac_os/brew/Brewfile)
+   - Installs [Homebrew](https://brew.sh/), formulae, casks, apps and VS Code extensions from [Brewfile](./mac_os/brew/Brewfile)
    - Installs [Oh-my-zsh](https://ohmyz.sh/) and plugins:
      - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
      - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
      - [zsh-completions](https://github.com/zsh-users/zsh-completions)
    - Installs [Powerlevel10k Zsh theme](https://github.com/romkatv/powerlevel10k)
-   - Copies [Iterm2](./mac_os/iterm2/com.googlecode.iterm2.plist), [.zshrc](./mac_os/zsh/.zshrc), [Powerlevel10k](mac_os/zsh/.p10k.zsh), [nano](./mac_os/nano/.nanorc) and [.gitignore](./mac_os/git/.gitignore) settings
+   - Copies [Iterm2](./mac_os/iterm2/com.googlecode.iterm2.plist), [Ghostty](./mac_os/ghostty/config), [.zshrc](./mac_os/zsh/.zshrc), [Powerlevel10k](mac_os/zsh/.p10k.zsh), [VS Code](./mac_os/vscode/settings.json), [nano](./mac_os/nano/.nanorc) and [.gitignore](./mac_os/git/.gitignore) settings
    - Configures and installs OpenJDK, pyenv, fnm and Angular
 2. **Restore system preferences:**
    - Sets System Preferences from [os_prefs.sh](./mac_os/os_settings/os_prefs.sh)
